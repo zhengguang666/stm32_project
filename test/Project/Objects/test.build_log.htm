@@ -1,0 +1,139 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.23.0.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information:  ,  , LIC=WHY63-AK2X2-V17P8-3M9AP-NM03I-20955
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.23
+Toolchain Path:  D:\SoftWare\keil523\install\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.23
+Dialog DLL:      DCM.DLL V1.15.0.0
+Target DLL:      CMSIS_AGDI.dll V1.27.5.0
+Dialog DLL:      TCM.DLL V1.27.0.0
+ 
+<h2>Project:</h2>
+E:\stm32_20180508\my_test\test\Project\test.uvprojx
+Project File Date:  05/20/2018
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\SoftWare\keil523\install\ARM\ARMCC\Bin'
+Build target 'test'
+compiling main.c...
+..\User\key\bsp_key.h(24): warning:  #1295-D: Deprecated declaration GetKey - give arg types
+  uint8_t GetKey();
+..\User\key\bsp_key.h(25): warning:  #1295-D: Deprecated declaration GetKey1L - give arg types
+  uint8_t GetKey1L();
+..\User\key\bsp_key.h(27): warning:  #1295-D: Deprecated declaration GetKey2L - give arg types
+  uint8_t GetKey2L();
+..\User\key\bsp_key.h(28): warning:  #1295-D: Deprecated declaration GetKey2R - give arg types
+  uint8_t GetKey2R();
+..\User\key\bsp_key.h(29): warning:  #1295-D: Deprecated declaration GetKey3L - give arg types
+  uint8_t GetKey3L();
+..\User\key\bsp_key.h(30): warning:  #1295-D: Deprecated declaration GetKey3R - give arg types
+  uint8_t GetKey3R();
+..\User\key\bsp_key.h(31): warning:  #1295-D: Deprecated declaration GetKey4L - give arg types
+  uint8_t GetKey4L();
+..\User\key\bsp_key.h(32): warning:  #1295-D: Deprecated declaration GetKey4R - give arg types
+  uint8_t GetKey4R();
+..\User\sim800l\SIM800L.h(31): warning:  #1295-D: Deprecated declaration GPSVLD - give arg types
+  unsigned char GPSVLD();
+..\User\sim800l\SIM800L.h(34): warning:  #1295-D: Deprecated declaration GetKeyCHG - give arg types
+  uint8_t GetKeyCHG();
+..\User\sim800l\SIM800L.h(37): warning:  #1295-D: Deprecated declaration CBCDATA - give arg types
+  void CBCDATA();
+..\User\sim800l\SIM800L.h(39): warning:  #1295-D: Deprecated declaration PWR_ON - give arg types
+  void PWR_ON();
+..\User\sim800l\SIM800L.h(40): warning:  #1295-D: Deprecated declaration GetSpeed - give arg types
+  void GetSpeed();
+..\User\sim800l\SIM800L.h(41): warning:  #1295-D: Deprecated declaration GetKeySTA - give arg types
+  uint8_t GetKeySTA();
+..\User\sim800l\SIM800L.h(42): warning:  #1295-D: Deprecated declaration GetKeyPWR - give arg types
+  uint8_t GetKeyPWR();
+..\User\sim800l\SIM800L.h(43): warning:  #1295-D: Deprecated declaration SIM_RST - give arg types
+  void SIM_RST();
+..\User\sim800l\SIM800L.h(44): warning:  #1295-D: Deprecated declaration GPSINI - give arg types
+  uint8_t GPSINI();
+..\User\sim800l\SIM800L.h(46): warning:  #1295-D: Deprecated declaration Creg_CK - give arg types
+  uint8_t Creg_CK();
+..\User\sim800l\SIM800L.h(47): warning:  #1295-D: Deprecated declaration PWR_DOWN - give arg types
+  uint8_t PWR_DOWN();
+..\User\sim800l\SIM800L.h(48): warning:  #1295-D: Deprecated declaration TCP_SEND - give arg types
+  uint8_t TCP_SEND();
+..\User\sim800l\SIM800L.h(49): warning:  #1295-D: Deprecated declaration GetGPS - give arg types
+  uint8_t GetGPS();
+..\User\sim800l\SIM800L.h(50): warning:  #1295-D: Deprecated declaration TCP_GET - give arg types
+  uint8_t TCP_GET();
+..\User\sim800l\SIM800L.h(51): warning:  #1295-D: Deprecated declaration GET_CBC - give arg types
+  void GET_CBC();
+..\User\sim800l\SIM800L.h(52): warning:  #1295-D: Deprecated declaration PWR_OFF - give arg types
+  void PWR_OFF();
+..\User\sim800l\SIM800L.h(53): warning:  #1295-D: Deprecated declaration SendGPS - give arg types
+  uint8_t SendGPS();	
+..\User\sim800l\SIM800L.h(54): warning:  #1295-D: Deprecated declaration GetKeyCHG - give arg types
+  uint8_t GetKeyCHG();
+..\User\main.c(15): warning:  #1295-D: Deprecated declaration GetId - give arg types
+  void GetId();
+..\User\main.c(33): warning:  #188-D: enumerated type mixed with another type
+  bool FLAG_BLE_CTS0=0;//CTS是否被拉低，拉低为1，否则为0
+..\User\main.c(34): warning:  #188-D: enumerated type mixed with another type
+  bool FLAG_BLE_CTS1=0;//CTS是否被拉高，拉高为1，否则为0
+..\User\main.c(35): warning:  #188-D: enumerated type mixed with another type
+  bool FLAG_LONG=0;		//分包长数据接收标识，准备接收为1，无为0
+..\User\main.c(41): warning:  #188-D: enumerated type mixed with another type
+  bool flag_svs=0;//服务器数据更新标识
+..\User\main.c(42): warning:  #188-D: enumerated type mixed with another type
+  bool flag_pos=0;//定时获取GPS位置标识
+..\User\main.c(67): warning:  #188-D: enumerated type mixed with another type
+  bool flag_rst=0;	//SIM868 RESET标识
+..\User\main.c(68): warning:  #188-D: enumerated type mixed with another type
+  bool flag_cool=0;	//SIM868冷启动标识：通过PWR键启动为冷启动0，通过RST为热启动1
+..\User\main.c(69): warning:  #188-D: enumerated type mixed with another type
+  bool flag_gsm=0;	//GSM Registe OK Flag:1 ok,0 NOT OK
+..\User\main.c(157): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+              if(strstr(Ub,">")){
+..\User\main.c(165): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+              else if(strstr(Ub,"+CIPERROR:")){
+..\User\main.c(177): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                      if(strstr(Ub,"+CIPCLOSE: 1")){
+..\User\main.c(179): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                          if(strstr(Ub,"+CIPCLOSE: 0,0")==NULL){
+..\User\main.c(85): warning:  #177-D: variable "s"  was declared but never referenced
+  	char *s;
+..\User\main.c(86): warning:  #177-D: variable "j"  was declared but never referenced
+  	uint8_t i,j;
+..\User\main.c(87): warning:  #177-D: variable "LEN"  was declared but never referenced
+  	uint8_t LEN[2];
+..\User\main.c(88): warning:  #550-D: variable "Uart1_RecLen"  was set but never used
+      int Uart1_RecLen=0;
+..\User\main.c(89): warning:  #177-D: variable "temp"  was declared but never referenced
+      u32 temp=0,first=0;
+..\User\main.c(89): warning:  #177-D: variable "first"  was declared but never referenced
+      u32 temp=0,first=0;
+..\User\main.c(91): warning:  #177-D: variable "GPIO_InitStructure"  was declared but never referenced
+  	GPIO_InitTypeDef GPIO_InitStructure;		//串口引脚结构
+..\User\main.c(248): warning:  #177-D: variable "i_d"  was declared but never referenced
+  	u8 i_d[9];
+..\User\main.c: 48 warnings, 0 errors
+linking...
+Program Size: Code=11916 RO-data=336 RW-data=216 ZI-data=3376  
+FromELF: creating hex file...
+".\Objects\test.axf" - 0 Error(s), 47 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_test
+  D:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:04
+</pre>
+</body>
+</html>
