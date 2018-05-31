@@ -3,6 +3,8 @@
 #include "bsp_led.h"
 #include "bsp_adc.h"
 #include "bsp_key.h"
+#include "bsp_TiMbase.h"
+#include "crc.h"
 #include "TIMER.h"
 #include "FLASH.h"
 #include "SIM800L.h"
@@ -71,8 +73,9 @@ bool flag_gsm=0;	//GSM Registe OK Flag:1 ok,0 NOT OK
 
 u8 Ub[256];
 u8 Uart1_buffer[256];
-u8 temp_buffer[256];
 u8 Key_flag=0;
+uint8_t Send_Fail_Count=0;
+volatile uint32_t time = 0; // ms 计时变量 
 #define WEIGHT_INFO_LEN 12
 
 /**
@@ -87,7 +90,6 @@ int main(void)
 	uint8_t LEN[2];
     int Uart1_RecLen=0;
     u32 temp=0,first=0;
-    uint8_t Send_Fail_Count=0;
 	GPIO_InitTypeDef GPIO_InitStructure;		//串口引脚结构
 	
 //	/* 设置系统时钟 */
@@ -98,19 +100,19 @@ int main(void)
 	LED_GPIO_Config();
     Key_GPIO_Config();
 	SIM_GPIO_Config();
+    BASIC_TIM_Init();
 	
 	ISO_Init();//初始化串口1/2
-	//printf("\r\n========SIM7600CE测试程序========\r\n");
-	//printf("*本程序提供了AT指令操作SIM7600CE模块的基本思路\r\n");
-	//printf("*实现模块初始化、TCP/IP，HTTPS、GPS、WLAN等功能\r\n");
-	//printf("*更多操作，请查阅AT指令手册\r\n");
-	//printf("*如有疑问，可加入我们的技术交流QQ群：586340506\r\n");
-	//printf("*接线方式：\r\n");
-	//printf("*PA2--RXD\r\n");
-	//printf("*PA3--TXD\r\n");
-	//printf("*PB4--IGT\r\n");
-	//printf("*PB3--STATUS\r\n");	
-	//printf("===============================\r\n");
+    
+   while(1)
+   {
+    if ( time == 1 ) /* 1000 * 1 ms = 1s 时间到 */
+    {
+      time = 0;
+			/* LED1 取反 */      
+			LED2_TOGGLE; 
+    }        
+   }
 	
 	//GetId();
     
@@ -153,39 +155,7 @@ int main(void)
                 temp_buffer[i]=Uart1_buffer[i];
             temp_buffer[i] = 0;*/
             
-            USART2_DMASS("AT+CIPSEND=0,11\r\n",1000,1000);
-            if(strstr(Ub,">")){
-                for(i=0;i<11;i++)
-                    USART2_SendByte(Uart1_buffer[i]);
-                USART2_SendByte(0x1A);
-                Key_flag = 0;
-                Send_Fail_Count = 0;
-                USART2_DMASS(NULL,10000,1000);
-            } 
-            else if(strstr(Ub,"+CIPERROR:")){
-                Send_Fail_Count++;
-                if(Send_Fail_Count == 3)
-                {
-                    Send_Fail_Count = 0;
-                	while(!Sim_ini()){
-                    SIM_RST();
-                    }
-                }
-                else
-                {
-                    USART2_DMASS("AT+CIPCLOSE?\r\n",1000,1000);
-                    if(strstr(Ub,"+CIPCLOSE: 1")){
-                        USART2_DMASS("AT+CIPCLOSE=0\r\n",3000,20000);
-                        if(strstr(Ub,"+CIPCLOSE: 0,0")==NULL){
-                            USART2_DMASS(NULL,1000,15000);
-                        }
-                    }
-                    Connect_Server();
-                }
-            }
-            Uart1_buffer_Clr();		//
-            USART1_RX_Buffer_Clear();
-            LED_BLUE;
+            Send_to_Server();
         }
         
         //每次循环中首先检测SIM7600是否处于开启状态			

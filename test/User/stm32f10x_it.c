@@ -31,6 +31,10 @@
 #include "bsp_led.h"
 #include "sim800l.h"
 
+#include "bsp_TiMbase.h"
+
+extern volatile uint32_t time;
+
 // ÉãÏñÍ·-»ðÑÛov7725
 extern u8 Ov7725_vsync;
 
@@ -337,3 +341,24 @@ void USB_HP_CAN1_TX_IRQHandler(void)
 
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
+
+/******************************************************************************/
+/*                 STM32F10x Peripherals Interrupt Handlers                   */
+/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
+/*  available peripheral interrupt handler's name please refer to the startup */
+/*  file (startup_stm32f10x_xx.s).                                            */
+/******************************************************************************/
+
+/**
+  * @brief  This function handles TIM2 interrupt request.
+  * @param  None
+  * @retval None
+  */
+void  BASIC_TIM_IRQHandler (void)
+{
+	if ( TIM_GetITStatus( BASIC_TIM, TIM_IT_Update) != RESET ) 
+	{	
+		time++;
+		TIM_ClearITPendingBit(BASIC_TIM , TIM_FLAG_Update);  		 
+	}		 	
+}

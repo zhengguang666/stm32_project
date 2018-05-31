@@ -25,6 +25,8 @@
 .\objects\main.o: ..\Libraries\FWlib\inc\misc.h
 .\objects\main.o: ..\User\adc\bsp_adc.h
 .\objects\main.o: ..\User\key\bsp_key.h
+.\objects\main.o: ..\User\TimBase\bsp_TiMbase.h
+.\objects\main.o: ..\User\crc\crc.h
 .\objects\main.o: ..\User\timer\TIMER.h
 .\objects\main.o: ..\User\flash\FLASH.h
 .\objects\main.o: ..\User\sim800l\SIM800L.h

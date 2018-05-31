@@ -39,3 +39,4 @@
 .\objects\stm32f10x_it.o: ..\User\sim800l\sim800l.h
 .\objects\stm32f10x_it.o: ..\User\usart\static_init.h
 .\objects\stm32f10x_it.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\String.h
+.\objects\stm32f10x_it.o: ..\User\TimBase\bsp_TiMbase.h

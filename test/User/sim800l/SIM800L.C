@@ -52,6 +52,10 @@ extern uint16_t TM_SEND;
 extern uint16_t TM_SEND;
 extern uint16_t T_SEND;
 
+extern u8 Uart1_buffer[256];
+extern u8 Key_flag;
+extern uint8_t Send_Fail_Count;
+
 uint8_t Sim_ini(void)
 {
 
@@ -130,6 +134,44 @@ uint8_t Sim_ini(void)
 	}
     */
 	return 0x01;
+}
+
+uint8_t Send_to_Server(void)
+{
+    uint8_t i;
+    USART2_DMASS("AT+CIPSEND=0,11\r\n",1000,1000);
+    if(strstr(Ub,">")){
+        for(i=0;i<11;i++)
+            USART2_SendByte(Uart1_buffer[i]);
+        USART2_SendByte(0x1A);
+        Key_flag = 0;
+        Send_Fail_Count = 0;
+        USART2_DMASS(NULL,10000,1000);
+    } 
+    else if(strstr(Ub,"+CIPERROR:")){
+        Send_Fail_Count++;
+        if(Send_Fail_Count == 3)
+        {
+            Send_Fail_Count = 0;
+            while(!Sim_ini()){
+                SIM_RST();
+            }
+        }
+        else
+        {
+            USART2_DMASS("AT+CIPCLOSE?\r\n",1000,1000);
+            if(strstr(Ub,"+CIPCLOSE: 1")){
+                USART2_DMASS("AT+CIPCLOSE=0\r\n",3000,20000);
+                if(strstr(Ub,"+CIPCLOSE: 0,0")==NULL){
+                    USART2_DMASS(NULL,1000,15000);
+                }
+            }
+            Connect_Server();
+        }
+    }
+    Uart1_buffer_Clr();		//
+    USART1_RX_Buffer_Clear();
+    LED_BLUE;
 }
 
 uint8_t Connect_Server(void)
