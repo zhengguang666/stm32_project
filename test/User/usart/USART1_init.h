@@ -8,7 +8,7 @@ extern "C" {
 #include "stm32f10x.h"
 #include "static_init.h"	//串口结构体
     
-#define USART1_BAUD_RATE 1200
+#define USART1_BAUD_RATE 115200
 
 void USART1_Config(void);		  				//串口配置
 void USART1_RX_Buffer_Clear(void); 				//清空接收缓冲区
