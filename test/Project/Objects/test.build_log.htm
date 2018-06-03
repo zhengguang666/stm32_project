@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.27.0.0
  
 <h2>Project:</h2>
 D:\SoftWare\github\repository\stm32_project\test\Project\test.uvprojx
-Project File Date:  05/30/2018
+Project File Date:  06/01/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\SoftWare\keil523\install\ARM\ARMCC\Bin'
@@ -82,58 +82,52 @@ compiling main.c...
   uint8_t SendGPS();	
 ..\User\sim800l\SIM800L.h(54): warning:  #1295-D: Deprecated declaration GetKeyCHG - give arg types
   uint8_t GetKeyCHG();
-..\User\main.c(17): warning:  #1295-D: Deprecated declaration GetId - give arg types
-  void GetId();
-..\User\main.c(35): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(33): warning:  #188-D: enumerated type mixed with another type
   bool FLAG_BLE_CTS0=0;//CTS是否被拉低，拉低为1，否则为0
-..\User\main.c(36): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(34): warning:  #188-D: enumerated type mixed with another type
   bool FLAG_BLE_CTS1=0;//CTS是否被拉高，拉高为1，否则为0
-..\User\main.c(37): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(35): warning:  #188-D: enumerated type mixed with another type
   bool FLAG_LONG=0;		//分包长数据接收标识，准备接收为1，无为0
-..\User\main.c(43): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(41): warning:  #188-D: enumerated type mixed with another type
   bool flag_svs=0;//服务器数据更新标识
-..\User\main.c(44): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(42): warning:  #188-D: enumerated type mixed with another type
   bool flag_pos=0;//定时获取GPS位置标识
-..\User\main.c(69): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(67): warning:  #188-D: enumerated type mixed with another type
   bool flag_rst=0;	//SIM868 RESET标识
-..\User\main.c(70): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(68): warning:  #188-D: enumerated type mixed with another type
   bool flag_cool=0;	//SIM868冷启动标识：通过PWR键启动为冷启动0，通过RST为热启动1
-..\User\main.c(71): warning:  #188-D: enumerated type mixed with another type
+..\User\main.c(69): warning:  #188-D: enumerated type mixed with another type
   bool flag_gsm=0;	//GSM Registe OK Flag:1 ok,0 NOT OK
-..\User\main.c(120): warning:  #128-D: loop is not reachable
-  	while(!Sim_ini()){
-..\User\main.c(158): warning:  #223-D: function "Send_to_Server" declared implicitly
-              Send_to_Server();
-..\User\main.c(88): warning:  #177-D: variable "s"  was declared but never referenced
+..\User\main.c(85): warning:  #177-D: variable "s"  was declared but never referenced
   	char *s;
-..\User\main.c(89): warning:  #177-D: variable "i"  was declared but never referenced
+..\User\main.c(86): warning:  #177-D: variable "i"  was declared but never referenced
   	uint8_t i,j;
-..\User\main.c(89): warning:  #177-D: variable "j"  was declared but never referenced
+..\User\main.c(86): warning:  #177-D: variable "j"  was declared but never referenced
   	uint8_t i,j;
-..\User\main.c(90): warning:  #177-D: variable "LEN"  was declared but never referenced
+..\User\main.c(87): warning:  #177-D: variable "LEN"  was declared but never referenced
   	uint8_t LEN[2];
-..\User\main.c(91): warning:  #550-D: variable "Uart1_RecLen"  was set but never used
+..\User\main.c(88): warning:  #177-D: variable "Uart1_RecLen"  was declared but never referenced
       int Uart1_RecLen=0;
-..\User\main.c(92): warning:  #177-D: variable "temp"  was declared but never referenced
+..\User\main.c(89): warning:  #177-D: variable "temp"  was declared but never referenced
       u32 temp=0,first=0;
-..\User\main.c(92): warning:  #177-D: variable "first"  was declared but never referenced
+..\User\main.c(89): warning:  #177-D: variable "first"  was declared but never referenced
       u32 temp=0,first=0;
-..\User\main.c(93): warning:  #177-D: variable "GPIO_InitStructure"  was declared but never referenced
+..\User\main.c(90): warning:  #177-D: variable "GPIO_InitStructure"  was declared but never referenced
   	GPIO_InitTypeDef GPIO_InitStructure;		//串口引脚结构
-..\User\main.c(218): warning:  #177-D: variable "i_d"  was declared but never referenced
-  	u8 i_d[9];
-..\User\main.c: 47 warnings, 0 errors
+..\User\main.c(116): warning:  #177-D: function "delay"  was declared but never referenced
+  static void delay(uint16_t t)
+..\User\main.c: 44 warnings, 0 errors
 linking...
-Program Size: Code=9828 RO-data=336 RW-data=224 ZI-data=2048  
+Program Size: Code=9908 RO-data=336 RW-data=204 ZI-data=1796  
 FromELF: creating hex file...
-".\Objects\test.axf" - 0 Error(s), 47 Warning(s).
+".\Objects\test.axf" - 0 Error(s), 44 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_test
   D:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

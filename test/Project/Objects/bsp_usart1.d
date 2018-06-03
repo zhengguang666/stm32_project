@@ -26,4 +26,5 @@
 .\objects\bsp_usart1.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\String.h
 .\objects\bsp_usart1.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\bsp_usart1.o: ..\User\timer\TIMER.h
+.\objects\bsp_usart1.o: ..\User\TimBase\bsp_TiMbase.h
 .\objects\bsp_usart1.o: ..\User\Led\bsp_led.h

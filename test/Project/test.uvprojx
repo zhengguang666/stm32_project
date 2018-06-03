@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\User;..\Libraries\FWlib\inc;..\User\Led;..\User\Lcd;..\User\usart;..\User\i2c;..\User\touch;..\User\SysTick;..\User\led;..\User\key;..\User\spi;..\User\iso;..\User\dht11;..\User\ds18b20;..\User\ov7725;..\User\adc;..\User\breathinglight;..\User\rda5807m;..\User\enc28j60;..\User\can;..\User\rtc;..\User\sram;..\User\norflash;..\User\usb\Mass_Storage\inc;..\User\usb\STM32_USB-FS-Device_Driver\inc;..\User\usb;..\User\sdcard;..\User\nandflash;..\User\ff9;..\User\ff9\option;..\User\iis;..\User\pcm1770;..\User\mp3\pub;..\User\sim900a;..\User\stepmotor;..\User\timer;..\User\ble;..\User\flash;..\User\usart;..\User\sim800l;..\User\BMP085\inc;..\Libraries\CMSIS\startup;..\User\crc</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\User;..\Libraries\FWlib\inc;..\User\Led;..\User\Lcd;..\User\usart;..\User\i2c;..\User\touch;..\User\SysTick;..\User\led;..\User\key;..\User\spi;..\User\iso;..\User\dht11;..\User\ds18b20;..\User\ov7725;..\User\adc;..\User\breathinglight;..\User\rda5807m;..\User\enc28j60;..\User\can;..\User\rtc;..\User\sram;..\User\norflash;..\User\usb\Mass_Storage\inc;..\User\usb\STM32_USB-FS-Device_Driver\inc;..\User\usb;..\User\sdcard;..\User\nandflash;..\User\ff9;..\User\ff9\option;..\User\iis;..\User\pcm1770;..\User\mp3\pub;..\User\sim900a;..\User\stepmotor;..\User\timer;..\User\ble;..\User\flash;..\User\usart;..\User\sim800l;..\User\BMP085\inc;..\Libraries\CMSIS\startup;..\User\crc;..\User\TimBase</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -648,6 +648,16 @@
               <FileName>crc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\crc\crc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>TIMER-BASE</GroupName>
+          <Files>
+            <File>
+              <FileName>bsp_TiMbase.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\TimBase\bsp_TiMbase.c</FilePath>
             </File>
           </Files>
         </Group>

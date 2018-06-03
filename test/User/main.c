@@ -14,9 +14,7 @@
 #include "stm32f10x_iwdg.h"
 
 static void delay(uint16_t t);
-void GetId();
-void Uart1_buffer_Clr(void);
-int Get_Weight(uint16_t AfTime);
+//void GetId();
 
 void IWDG_Init(u8 prer,u16 rlr);
 void IWDG_Feed(void);
@@ -72,7 +70,6 @@ bool flag_gsm=0;	//GSM Registe OK Flag:1 ok,0 NOT OK
 
 
 u8 Ub[256];
-u8 Uart1_buffer[256];
 u8 Key_flag=0;
 uint8_t Send_Fail_Count=0;
 volatile uint32_t time = 0; // ms 计时变量 
@@ -104,100 +101,16 @@ int main(void)
 	
 	ISO_Init();//初始化串口1/2
     
-   while(1)
-   {
-    if ( time == 1 ) /* 1000 * 1 ms = 1s 时间到 */
-    {
-      time = 0;
-			/* LED1 取反 */      
-			LED2_TOGGLE; 
-    }        
-   }
 	
 	//GetId();
     
     //初始化SIM7600CE			
-	while(!Sim_ini()){
-				SIM_RST();
-	}
-	Uart1_buffer_Clr();		//
-	USART1_RX_Buffer_Clear();
+	//while(!Sim_ini()){
+				//SIM_RST();
+	//}
 	while(1){
-        //LED_BLUE;
         LED_RED;
-	//如果获取到数据,等待100ms存放到一个数组,
-        Uart1_RecLen=0;
-        while(LookUSART1_GetBuffCount())
-        {
-            Uart1_buffer_Clr();
-            Get_Weight(10);
-            /*first = 1;
-            delay(300);
-            while(LookUSART1_GetBuffCount())
-            {                
-                USART1_GetByte(&Uart1_byte);
-                Uart1_buffer[Uart1_RecLen]=Uart1_byte;
-                Uart1_RecLen=Uart1_RecLen+1;	
-            }  */              
-        }
-        
-        //检查是否有按键按下
-		if(Key_Scan(KEY1_GPIO_PORT,KEY1_GPIO_PIN,1) == KEY_ON)	//
-		{
-            Key_flag = 1;           
-		}
-    //如果按键中断标志为1,将重量信息发送给服务器,
-        if(Key_flag == 1)
-        {
-            LED_GREEN;
-            /*Key_flag = 0;             //debug模拟测试
-            for(i=0;i<11;i++)
-                temp_buffer[i]=Uart1_buffer[i];
-            temp_buffer[i] = 0;*/
-            
-            Send_to_Server();
-        }
-        
-        //每次循环中首先检测SIM7600是否处于开启状态			
-		//if(!GetKeySTA())	//SIM7600意外关闭
-		//{
-			//SIM_RST();
-			//break;
-		//}
-
 	}
-}
-
-int Get_Weight(uint16_t AfTime)
-{
-    int Uart1_RecLen=0;
-    u8 Uart1_byte=0;
-    uint16_t aftime;
-        
-    aftime=AfTime;
-    do{
-        delay(1);
-        while(LookUSART1_GetBuffCount()){
-            USART1_GetByte(&Uart1_byte);
-            Uart1_buffer[Uart1_RecLen]=Uart1_byte;
-            Uart1_RecLen=Uart1_RecLen+1;			
-            aftime=AfTime;
-        }		
-        aftime--;
-	}while(LookUSART1_GetBuffCount() || aftime>0);//
-					
-    USART1_RX_Buffer_Clear();			
-    return Uart1_RecLen;			
-}
-
-void Uart1_buffer_Clr()
-{
-	uint16_t i;
-	for(i=0;i<256;i++)
-	{
-		Uart1_buffer[i]=0x00;
-	}
-	
 }
 
 static void delay(uint16_t t)
@@ -212,6 +125,7 @@ static void delay(uint16_t t)
 /*
 //获取ID
 */
+/*
 void GetId()
 {
 	u32 CpuID[1];
@@ -241,7 +155,7 @@ void GetId()
 		USART1_SendByte(id[i]);
 	}
 
-}
+}*/
 
 
 /**

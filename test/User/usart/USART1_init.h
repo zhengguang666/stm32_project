@@ -10,20 +10,6 @@ extern "C" {
     
 #define USART1_BAUD_RATE 1200
 
-//USARTÉè±¸¿ØÖÆ½á¹¹Ìå
-typedef struct
-{
-	u32			BaudRate;				//²¨ÌØÂÊ
-
-	//½ÓÊÕ¿ØÖÆ¶ÓÁĞ
-	u8			*QStart;		        //¿ªÊ¼Î»ÖÃ
-	u8			*QEnd;		            //½áÊøÎ»ÖÃ
-    u8			*QIn;				    //ÊäÈëÎ»ÖÃ
-	u8			*QOut;				    //Êä³öÎ»ÖÃ
-	u8			*QDataBuf;            	//¿Õ¼äÖ¸Õë
-    u32			QDataCount;             //¿Õ¼äÀïÊı¾İ¸öÊı 
-} USART1_STRUCT;
-
 void USART1_Config(void);		  				//´®¿ÚÅäÖÃ
 void USART1_RX_Buffer_Clear(void); 				//Çå¿Õ½ÓÊÕ»º³åÇø
 
@@ -36,7 +22,6 @@ u32 USART1_WaitTime_GetString(u8* Data,u32 DataLen,u32 TimeLater);	//µÈ´ıÊ±³¤Ö®º
 u8 USART1_GetByte_WaitLong(void);				//´®¿Úµ¥×Ö·û½ÓÊÕÒ»Ö±µÈ´ı
 void USART1_GPIO_Init(void);						//´®¿ÚÒı½Å³õÊ¼»¯
 
-USART1_STRUCT* USART1GetDCB(void);				//´®¿ÚÓ¦ÓÃÅäÖÃ
 u32 LookUSART1_GetBuffMax(void);				//²éÑ¯½ÓÊÕ»º³åÇø´óĞ¡
 u32 LookUSART1_GetBuffCount(void);				//²éÑ¯»º³åÇøÖĞ½ÓÊÕµ½µÄÊı¾İ¸öÊı
 

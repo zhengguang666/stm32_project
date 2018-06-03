@@ -356,9 +356,9 @@ void USB_HP_CAN1_TX_IRQHandler(void)
   */
 void  BASIC_TIM_IRQHandler (void)
 {
-	if ( TIM_GetITStatus( BASIC_TIM, TIM_IT_Update) != RESET ) 
+	if ( TIM_GetITStatus( BASIC_TIM6, TIM_IT_Update) != RESET ) 
 	{	
 		time++;
-		TIM_ClearITPendingBit(BASIC_TIM , TIM_FLAG_Update);  		 
+		TIM_ClearITPendingBit(BASIC_TIM6 , TIM_FLAG_Update);  		 
 	}		 	
 }
