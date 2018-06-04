@@ -22,9 +22,9 @@
 
 void SIM_GPIO_Config(void);
 uint8_t Sim_ini(void);
-void PWR_ON();
-void SIM_RST();
-uint8_t Creg_CK();
-void PWR_OFF();
+void PWR_ON(void);
+void SIM_RST(void);
+uint8_t Creg_CK(void);
+void PWR_OFF(void);
 
 #endif

@@ -1,7 +1,5 @@
 ..\..\output\sim7600.o: ..\..\User\sim7600\sim7600.C
-..\..\output\sim7600.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stddef.h
-..\..\output\sim7600.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdlib.h
-..\..\output\sim7600.o: ..\..\User\usart\bsp_usart2.h
+..\..\output\sim7600.o: ..\..\User\sim7600\sim7600.h
 ..\..\output\sim7600.o: ..\..\Libraries\CMSIS\stm32f10x.h
 ..\..\output\sim7600.o: ..\..\Libraries\CMSIS\core_cm3.h
 ..\..\output\sim7600.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdint.h
@@ -15,6 +13,5 @@
 ..\..\output\sim7600.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\sim7600.o: ..\..\User\common\bsp_common.h
 ..\..\output\sim7600.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\String.h
-..\..\output\sim7600.o: ..\..\User\sim7600\sim7600.h
-..\..\output\sim7600.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\sim7600.o: ..\..\User\key\bsp_key.h
+..\..\output\sim7600.o: ..\..\User\usart\bsp_usart2.h

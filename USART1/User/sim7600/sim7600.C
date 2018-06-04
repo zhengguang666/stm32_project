@@ -1,12 +1,7 @@
-
-#include <stddef.h>
-#include <stdlib.h>
-
-#include "bsp_usart2.h"
 #include "sim7600.h"
-#include "stdio.h"
 #include "bsp_common.h"
 #include "bsp_key.h"  
+#include "bsp_usart2.h"
 
 extern u8 Usart2_temp_buffer[256];
 extern unsigned char ip[];
@@ -37,14 +32,10 @@ uint8_t Sim_ini(void)
 	USART2_DMASS("AT+CGREG=1\r\n",1000,1000);
 	USART2_DMASS("AT+CICCID\r\n",2000,1000);	
 //µÈ´ý×¢²á³É¹¦	
-	printf("\r\n=======µÈ´ýÍøÂç×¢²á=======\r\n");
 	if(Creg_CK()==0){
-		printf("\r\n=======ÍøÂç×¢²áÊ§°Ü=======\r\n");
 		return 0x00;
 	}
-	printf("\r\n=======ÍøÂç×¢²á³É¹¦=======\r\n");
 //TCP/IP
-	printf("\r\n=======TCP/IP³õÊ¼»¯=======\r\n");
 	USART2_DMASS("AT+CGATT=1\r\n",10000,1000);
 	USART2_DMASS("AT+CGACT?\r\n",1000,1000);
 	USART2_DMASS("AT+CGSOCKCONT=1,\"IP\",\"CMNET\"\r\n",10000,1000);
@@ -144,7 +135,6 @@ uint8_t GetSimSTA()
 
 void PWR_ON()
 {
-    uint8_t i;
 	while(GetSimSTA())
 	{	
 		IGT_Lo;

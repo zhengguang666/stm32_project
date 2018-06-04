@@ -21,6 +21,7 @@
 #include "bsp_led.h"
 #include "bsp_TiMbase.h"
 #include "bsp_usart2.h"
+#include "sim7600.h"
 
 unsigned char ip[]="position.iego.net";
 unsigned char pt[]="10001";
@@ -41,6 +42,11 @@ int main(void)
     USART_Config();
     USART2_Config();
     BASIC_TIM7_Init();
+    SIM_GPIO_Config();
+    
+    while(!Sim_ini()){
+		SIM_RST();
+	}
 	
   while(1)
 	{	
