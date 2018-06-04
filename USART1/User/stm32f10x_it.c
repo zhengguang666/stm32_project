@@ -26,6 +26,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "bsp_usart.h"
+#include "bsp_TiMbase.h"
+
+extern volatile uint32_t time;
+
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -139,14 +143,30 @@ void SysTick_Handler(void)
 }
 
 // 串口中断服务函数
-void DEBUG_USART_IRQHandler(void)
+void WEIGHT_USART_IRQHandler(void)
 {
-  uint8_t ucTemp;
-	if(USART_GetITStatus(DEBUG_USARTx,USART_IT_RXNE)!=RESET)
+	if(USART_GetITStatus(WEIGHT_USARTx,USART_IT_RXNE)!=RESET)
 	{		
-		ucTemp = USART_ReceiveData(DEBUG_USARTx);
-    USART_SendData(DEBUG_USARTx,ucTemp);    
+        ReceiveFSM();   
 	}	 
+}
+
+void  BASIC_TIM6_IRQHandler (void)
+{
+	if ( TIM_GetITStatus( BASIC_TIM6, TIM_IT_Update) != RESET ) 
+	{	
+		time++;
+		TIM_ClearITPendingBit(BASIC_TIM6 , TIM_FLAG_Update);  		 
+	}		 	
+}
+
+void  BASIC_TIM7_IRQHandler (void)
+{
+	if ( TIM_GetITStatus( BASIC_TIM7, TIM_IT_Update) != RESET ) 
+	{	
+		TimerT35Expired();
+		TIM_ClearITPendingBit(BASIC_TIM7 , TIM_FLAG_Update);  		 
+	}		 	
 }
 
 /**

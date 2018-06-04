@@ -8,7 +8,9 @@
 ..\..\output\stm32f10x_it.o: ..\..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\..\output\stm32f10x_it.o: ..\..\Libraries\CMSIS\stm32f10x.h
 ..\..\output\stm32f10x_it.o: ..\..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\..\output\stm32f10x_it.o: ..\..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\..\output\stm32f10x_it.o: ..\..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\..\output\stm32f10x_it.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\stm32f10x_it.o: ..\..\User\usart\bsp_usart.h
 ..\..\output\stm32f10x_it.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\stm32f10x_it.o: ..\..\User\timer_base\bsp_TiMbase.h

@@ -7,7 +7,13 @@
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_gpio.h
 ..\..\output\main.o: ..\..\Libraries\CMSIS\stm32f10x.h
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_rcc.h
+..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_tim.h
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\stm32f10x_usart.h
 ..\..\output\main.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\main.o: ..\..\User\usart\bsp_usart.h
 ..\..\output\main.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\main.o: ..\..\User\led\bsp_led.h
+..\..\output\main.o: ..\..\User\timer_base\bsp_TiMbase.h
+..\..\output\main.o: ..\..\User\usart\bsp_usart2.h
+..\..\output\main.o: ..\..\User\common\bsp_common.h
+..\..\output\main.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\String.h

@@ -1,21 +1,26 @@
 /**
-  ******************************************************************************
-  * @file    bsp_usart.c
-  * @author  fire
-  * @version V1.0
-  * @date    2013-xx-xx
-  * @brief   重定向c库printf函数到usart端口
-  ******************************************************************************
-  * @attention
-  *
-  * 实验平台:秉火STM32 F103-指南者 开发板  
-  * 论坛    :http://www.firebbs.cn
-  * 淘宝    :https://fire-stm32.taobao.com
-  *
-  ******************************************************************************
   */ 
 	
 #include "bsp_usart.h"
+#include "bsp_TiMbase.h" 
+
+/* ----------------------- Defines ------------------------------------------*/
+#define MB_SER_PDU_SIZE_MIN     4       /*!< Minimum size of a Modbus RTU frame. */
+#define MB_SER_PDU_SIZE_MAX     256     /*!< Maximum size of a Modbus RTU frame. */
+#define MB_SER_PDU_SIZE_CRC     2       /*!< Size of CRC field in PDU. */
+#define MB_SER_PDU_ADDR_OFF     0       /*!< Offset of slave address in Ser-PDU. */
+#define MB_SER_PDU_PDU_OFF      1       /*!< Offset of Modbus-PDU in Ser-PDU. */
+
+/* ----------------------- Static variables ---------------------------------*/
+
+volatile uint8_t  ucRTUBuf[MB_SER_PDU_SIZE_MAX];
+
+static volatile uint8_t *pucSndBufferCur;
+static volatile unsigned short usSndBufferCount;
+
+static volatile uint8_t usRcvBufferPos;
+
+static volatile uint8_t eRcvStateError = 0;
 
  /**
   * @brief  配置嵌套向量中断控制器NVIC
@@ -30,7 +35,7 @@ static void NVIC_Configuration(void)
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
   
   /* 配置USART为中断源 */
-  NVIC_InitStructure.NVIC_IRQChannel = DEBUG_USART_IRQ;
+  NVIC_InitStructure.NVIC_IRQChannel = WEIGHT_USART_IRQ;
   /* 抢断优先级*/
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
   /* 子优先级 */
@@ -52,25 +57,25 @@ void USART_Config(void)
 	USART_InitTypeDef USART_InitStructure;
 
 	// 打开串口GPIO的时钟
-	DEBUG_USART_GPIO_APBxClkCmd(DEBUG_USART_GPIO_CLK, ENABLE);
+	WEIGHT_USART_GPIO_APBxClkCmd(WEIGHT_USART_GPIO_CLK, ENABLE);
 	
 	// 打开串口外设的时钟
-	DEBUG_USART_APBxClkCmd(DEBUG_USART_CLK, ENABLE);
+	WEIGHT_USART_APBxClkCmd(WEIGHT_USART_CLK, ENABLE);
 
 	// 将USART Tx的GPIO配置为推挽复用模式
-	GPIO_InitStructure.GPIO_Pin = DEBUG_USART_TX_GPIO_PIN;
+	GPIO_InitStructure.GPIO_Pin = WEIGHT_USART_TX_GPIO_PIN;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(DEBUG_USART_TX_GPIO_PORT, &GPIO_InitStructure);
+	GPIO_Init(WEIGHT_USART_TX_GPIO_PORT, &GPIO_InitStructure);
 
   // 将USART Rx的GPIO配置为浮空输入模式
-	GPIO_InitStructure.GPIO_Pin = DEBUG_USART_RX_GPIO_PIN;
+	GPIO_InitStructure.GPIO_Pin = WEIGHT_USART_RX_GPIO_PIN;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-	GPIO_Init(DEBUG_USART_RX_GPIO_PORT, &GPIO_InitStructure);
+	GPIO_Init(WEIGHT_USART_RX_GPIO_PORT, &GPIO_InitStructure);
 	
 	// 配置串口的工作参数
 	// 配置波特率
-	USART_InitStructure.USART_BaudRate = DEBUG_USART_BAUDRATE;
+	USART_InitStructure.USART_BaudRate = WEIGHT_USART_BAUDRATE;
 	// 配置 针数据字长
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 	// 配置停止位
@@ -83,95 +88,84 @@ void USART_Config(void)
 	// 配置工作模式，收发一起
 	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 	// 完成串口的初始化配置
-	USART_Init(DEBUG_USARTx, &USART_InitStructure);
+	USART_Init(WEIGHT_USARTx, &USART_InitStructure);
 	
 	// 串口中断优先级配置
 	NVIC_Configuration();
 	
 	// 使能串口接收中断
-	USART_ITConfig(DEBUG_USARTx, USART_IT_RXNE, ENABLE);	
+	USART_ITConfig(WEIGHT_USARTx, USART_IT_RXNE, ENABLE);	
 	
 	// 使能串口
-	USART_Cmd(DEBUG_USARTx, ENABLE);	    
+	USART_Cmd(WEIGHT_USARTx, ENABLE);	    
 }
 
-/*****************  发送一个字节 **********************/
-void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch)
+void
+PortSerialGetByte( uint8_t * pucByte )
 {
-	/* 发送一个字节数据到USART */
-	USART_SendData(pUSARTx,ch);
-		
-	/* 等待发送数据寄存器为空 */
-	while (USART_GetFlagStatus(pUSARTx, USART_FLAG_TXE) == RESET);	
+    *pucByte = USART_ReceiveData(USART1);
 }
 
-/****************** 发送8位的数组 ************************/
-void Usart_SendArray( USART_TypeDef * pUSARTx, uint8_t *array, uint16_t num)
+void
+ReceiveFSM( void )
 {
-  uint8_t i;
-	
-	for(i=0; i<num; i++)
-  {
-	    /* 发送一个字节数据到USART */
-	    Usart_SendByte(pUSARTx,array[i]);	
-  
-  }
-	/* 等待发送完成 */
-	while(USART_GetFlagStatus(pUSARTx,USART_FLAG_TC)==RESET);
+    uint8_t           ucByte;
+
+    /* Always read the character. */
+    ( void )PortSerialGetByte( ( uint8_t * ) & ucByte );
+    
+    switch ( eRcvState )
+    {
+        /* If we have received a character in the init state we have to
+         * wait until the frame is finished.
+         */
+    case STATE_RX_INIT:
+        PortTimersEnable(  );
+        break;
+
+        /* In the error state we wait until all characters in the
+         * damaged frame are transmitted.
+         */
+    case STATE_RX_ERROR:
+        PortTimersEnable();
+        break;
+
+        /* In the idle state we wait for a new character. If a character
+         * is received the t1.5 and t3.5 timers are started and the
+         * receiver is in the state STATE_RX_RECEIVCE.
+         */
+    case STATE_RX_IDLE:
+        eRcvStateError = 0;
+        usRcvBufferPos = 0;
+        ucRTUBuf[usRcvBufferPos++] = ucByte;
+        eRcvState = STATE_RX_RCV;
+
+        /* Enable t3.5 timers. */
+        PortTimersEnable();
+        break;
+
+        /* We are currently receiving a frame. Reset the timer after
+         * every character received. If more than the maximum possible
+         * number of bytes in a modbus frame is received the frame is
+         * ignored.
+         */
+    case STATE_RX_RCV:
+        if( usRcvBufferPos < MB_SER_PDU_SIZE_MAX )
+        {
+            ucRTUBuf[usRcvBufferPos++] = ucByte;
+        }
+        else
+        {
+            eRcvState = STATE_RX_ERROR;
+            eRcvStateError = 1;
+        }
+        PortTimersEnable();
+        break;
+    }
 }
 
-/*****************  发送字符串 **********************/
-void Usart_SendString( USART_TypeDef * pUSARTx, char *str)
+void TimerT35Expired( void )
 {
-	unsigned int k=0;
-  do 
-  {
-      Usart_SendByte( pUSARTx, *(str + k) );
-      k++;
-  } while(*(str + k)!='\0');
-  
-  /* 等待发送完成 */
-  while(USART_GetFlagStatus(pUSARTx,USART_FLAG_TC)==RESET)
-  {}
+    PortTimersDisable();
+    eRcvState = STATE_RX_IDLE;
 }
-
-/*****************  发送一个16位数 **********************/
-void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch)
-{
-	uint8_t temp_h, temp_l;
-	
-	/* 取出高八位 */
-	temp_h = (ch&0XFF00)>>8;
-	/* 取出低八位 */
-	temp_l = ch&0XFF;
-	
-	/* 发送高八位 */
-	USART_SendData(pUSARTx,temp_h);	
-	while (USART_GetFlagStatus(pUSARTx, USART_FLAG_TXE) == RESET);
-	
-	/* 发送低八位 */
-	USART_SendData(pUSARTx,temp_l);	
-	while (USART_GetFlagStatus(pUSARTx, USART_FLAG_TXE) == RESET);	
-}
-
-///重定向c库函数printf到串口，重定向后可使用printf函数
-int fputc(int ch, FILE *f)
-{
-		/* 发送一个字节数据到串口 */
-		USART_SendData(DEBUG_USARTx, (uint8_t) ch);
-		
-		/* 等待发送完毕 */
-		while (USART_GetFlagStatus(DEBUG_USARTx, USART_FLAG_TXE) == RESET);		
-	
-		return (ch);
-}
-
-///重定向c库函数scanf到串口，重写向后可使用scanf、getchar等函数
-int fgetc(FILE *f)
-{
-		/* 等待串口输入数据 */
-		while (USART_GetFlagStatus(DEBUG_USARTx, USART_FLAG_RXNE) == RESET);
-
-		return (int)USART_ReceiveData(DEBUG_USARTx);
-}
-
