@@ -27,47 +27,23 @@ Project File Date:  06/04/2018
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\SoftWare\keil523\install\ARM\ARMCC\Bin'
 Build target 'USART'
-compiling sim7600.C...
+compiling main.c...
 ..\..\User\sim7600\sim7600.h(30): warning:  #1-D: last line of file ends without a newline
   #endif
-..\..\User\sim7600\sim7600.C(55): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(strstr(Usart2_temp_buffer,"+CIPOPEN: 0,0")==NULL){
-..\..\User\sim7600\sim7600.C(57): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  		if(strstr(Usart2_temp_buffer,"+CIPOPEN: 0,0")==NULL){		
-..\..\User\sim7600\sim7600.C(63): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(strstr(Usart2_temp_buffer,">")){
-..\..\User\sim7600\sim7600.C(73): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	if(strstr(Usart2_temp_buffer,"+CIPCLOSE: 1")){
-..\..\User\sim7600\sim7600.C(75): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  		if(strstr(Usart2_temp_buffer,"+CIPCLOSE: 0,0")==NULL){
-..\..\User\sim7600\sim7600.C(19): warning:  #177-D: variable "i"  was declared but never referenced
-  	int i;
-..\..\User\sim7600\sim7600.C(20): warning:  #177-D: variable "RecLen"  was declared but never referenced
-  	int RecLen=0;
-..\..\User\sim7600\sim7600.C(21): warning:  #177-D: variable "Ubyte"  was declared but never referenced
-  	u8 Ubyte=0;
-..\..\User\sim7600\sim7600.C(90): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	}while((strstr(Usart2_temp_buffer,"+CREG: 1,5")==NULL) && (strstr(Usart2_temp_buffer,"+CREG: 1,1")==NULL)&& i<30);
-..\..\User\sim7600\sim7600.C(90): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	}while((strstr(Usart2_temp_buffer,"+CREG: 1,5")==
-ULL) && (strstr(Usart2_temp_buffer,"+CREG: 1,1")==NULL)&& i<30);
-..\..\User\sim7600\sim7600.C(96): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	}while((strstr(Usart2_temp_buffer,"+CGREG: 1,5")==NULL) && (strstr(Usart2_temp_buffer,"+CGREG: 1,1")==NULL)&& j<50);
-..\..\User\sim7600\sim7600.C(96): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
-  	}while((strstr(Usart2_temp_buffer,"+CGREG: 1,5")==
-ULL) && (strstr(Usart2_temp_buffer,"+CGREG: 1,1")==NULL)&& j<50);
-..\..\User\sim7600\sim7600.C: 13 warnings, 0 errors
+..\..\User\main.c(47): warning:  #128-D: loop is not reachable
+      while(!Sim_ini()){
+..\..\User\main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=10368 RO-data=336 RW-data=116 ZI-data=1796  
+Program Size: Code=10316 RO-data=336 RW-data=116 ZI-data=1796  
 FromELF: creating hex file...
-"..\..\Output\USART.axf" - 0 Error(s), 13 Warning(s).
+"..\..\Output\USART.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_USART
   D:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>

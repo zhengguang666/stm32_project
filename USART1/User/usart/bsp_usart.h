@@ -44,6 +44,14 @@ typedef enum
     STATE_TX_XMIT               /*!< Transmitter is in transfer state. */
 } eMBSndState;
 
+struct customer{
+char type; 
+char *unit_price; 
+char *weight; 
+char *Block; 
+float total_price; 
+};
+
 static volatile eMBRcvState eRcvState;
 
 void USART_Config(void);

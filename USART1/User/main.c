@@ -26,6 +26,17 @@
 unsigned char ip[]="position.iego.net";
 unsigned char pt[]="10001";
 
+volatile uint8_t Customer_Num = 0;//客户数量
+volatile uint8_t Customer_Current = 0;//当前客户
+volatile uint8_t pCustomer1 = 0;//客户称重次数
+volatile uint8_t pCustomer2 = 0;
+volatile uint8_t pCustomer3 = 0;
+volatile uint8_t pCustomer4 = 0;
+volatile struct customer Customer1[16];//所有稳重信息
+volatile struct customer Customer2[16];
+volatile struct customer Customer3[16];
+volatile struct customer Customer4[16];
+
 volatile uint32_t time = 0; // ms 计时变量 
 
 /**
@@ -43,19 +54,31 @@ int main(void)
     USART2_Config();
     BASIC_TIM7_Init();
     SIM_GPIO_Config();
-    
     while(!Sim_ini()){
 		SIM_RST();
 	}
 	
-  while(1)
+    while(1)
 	{	
-        if ( time == 1000 ) /* 1000 * 1 ms = 1s 时间到 */
+        if(Customer_Num == 0)
+            Customer_Current = 0;
+        
+        switch ( KeyboardScan() )
         {
-            time = 0;
-			/* LED1 取反 */      
-			LED1_TOGGLE; 
-        } 
+            case A: //进入某个客户处理逻辑
+                break;
+            case B: //多人,添加新的客户,并处进入处理逻辑
+                break;    
+            case C: //向上
+                break;  
+            case D: //向下
+                break;  
+            case E: //累加
+                break; 
+            case F: //结算
+                break;            
+        }
+        if( KeyboardScan() == 'A') //A:累加
 	}	
 }
 /*********************************************END OF FILE**********************/
