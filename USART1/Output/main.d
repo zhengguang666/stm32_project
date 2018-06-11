@@ -17,4 +17,5 @@
 ..\..\output\main.o: ..\..\User\usart\bsp_usart2.h
 ..\..\output\main.o: ..\..\User\common\bsp_common.h
 ..\..\output\main.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\String.h
+..\..\output\main.o: ..\..\User\keyboard\keyboard.h
 ..\..\output\main.o: ..\..\User\sim7600\sim7600.h

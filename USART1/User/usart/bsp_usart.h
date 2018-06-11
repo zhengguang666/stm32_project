@@ -47,8 +47,8 @@ typedef enum
 struct customer{
 char type; 
 char *unit_price; 
-char *weight; 
 char *Block; 
+char *weight; 
 float total_price; 
 };
 
