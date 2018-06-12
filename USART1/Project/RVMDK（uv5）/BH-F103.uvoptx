@@ -8,7 +8,7 @@
   <Extensions>
     <cExt>*.c</cExt>
     <aExt>*.s*; *.src; *.a*</aExt>
-    <oExt>*.obj</oExt>
+    <oExt>*.obj; *.o</oExt>
     <lExt>*.lib</lExt>
     <tExt>*.txt; *.h; *.inc</tExt>
     <pExt>*.plm</pExt>
@@ -714,7 +714,7 @@
 
   <Group>
     <GroupName>USART</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -722,7 +722,7 @@
       <GroupNumber>7</GroupNumber>
       <FileNumber>36</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\User\usart\bsp_usart.c</PathWithFileName>
@@ -746,7 +746,7 @@
 
   <Group>
     <GroupName>COMMON</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -806,7 +806,7 @@
 
   <Group>
     <GroupName>KEYBOARD</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

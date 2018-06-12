@@ -22,51 +22,47 @@ Dialog DLL:      TCM.DLL V1.27.0.0
  
 <h2>Project:</h2>
 D:\SoftWare\github\repository\stm32_project\USART1\Project\RVMDK（uv5）\BH-F103.uvprojx
-Project File Date:  06/04/2018
+Project File Date:  06/11/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\SoftWare\keil523\install\ARM\ARMCC\Bin'
 Build target 'USART'
-compiling keyboard.c...
 compiling main.c...
 ..\..\User\sim7600\sim7600.h(30): warning:  #1-D: last line of file ends without a newline
   #endif
-..\..\User\main.c(64): error:  #20: identifier "keyboard_value" is undefined
-          keyboard_value = KeyboardScan();
-..\..\User\main.c(64): warning:  #223-D: function "KeyboardScan" declared implicitly
-          keyboard_value = KeyboardScan();
-..\..\User\main.c(67): error:  #20: identifier "A" is undefined
-              case A: //0~9 . 进入某个客户处理逻辑
-..\..\User\main.c(72): error:  #167: argument of type "char" is incompatible with parameter of type "char *restrict"
-                          Customer[Customer_Current][pCustomer[Customer_Current][0]].type = strncat( Customer[Customer_Current][pCustomer[Customer_Current][0]].type, keyboard_value, 1000 );
-..\..\User\main.c(72): error:  #513: a value of type "char *" cannot be assigned to an entity of type "char"
-                          Customer[Customer_Current][pCustomer[Customer_Current][0]].type = strncat( Customer[Customer_Current][pCustomer[Customer_Current][0]].type, keyboard_value, 1000 );
-..\..\User\main.c(76): error:  #20: identifier "B" is undefined
-              case B: //确认
-..\..\User\main.c(78): error:  #20: identifier "C" is undefined
-              case C: //累加
-..\..\User\main.c(80): error:  #20: identifier "D" is undefined
-              case D: //去皮
-..\..\User\main.c(82): error:  #20: identifier "E" is undefined
-              case E: //多人,添加新的客户,并处进入处理逻辑
-..\..\User\main.c(84): error:  #20: identifier "F" is undefined
-              case F: //向上
-..\..\User\main.c(86): error:  #20: identifier "G" is undefined
-              case G: //向下
-..\..\User\main.c(88): error:  #20: identifier "H" is undefined
-              case H: //结算
-..\..\User\main.c(92): error:  #127: expected a statement
-  	}	
-..\..\User\main.c: 2 warnings, 12 errors
-"..\..\Output\USART.axf" - 12 Error(s), 2 Warning(s).
+..\..\User\main.c(89): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *restrict"
+                          Customer[Customer_Current][pCustomer[Customer_Current][0]].unit_price = strncat( Customer[Customer_Current][pCustomer[Customer_Current][0]].unit_price, &keyboard_value, 1 );
+..\..\User\main.c(93): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *restrict"
+                          Customer[Customer_Current][pCustomer[Customer_Current][0]].Block = strncat( Customer[Customer_Current][pCustomer[Customer_Current][0]].Block, &keyboard_value, 1 );
+..\..\User\main.c(100): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *restrict"
+                          Customer[Customer_Current][pCustomer[Customer_Current][0]].unit_price = strncat( Customer[Customer_Current][pCustomer[Customer_Current][0]].unit_price, &keyboard_value, 1 );
+..\..\User\main.c(121): warning:  #513-D: a value of type "unsigned char *" cannot be assigned to an entity of type "char *"
+                          weight_value = Get_Weight();
+..\..\User\main.c(135): warning:  #513-D: a value of type "unsigned char *" cannot be assigned to an entity of type "char *"
+                          weight_value = Get_Weight();
+..\..\User\main.c(196): warning:  #167-D: argument of type "volatile struct customer *" is incompatible with parameter of type "void *"
+                      memset( &Customer[Customer_Current][i], 0, sizeof(Customer[Customer_Current][i]) );
+..\..\User\main.c: 7 warnings, 0 errors
+compiling stm32f10x_it.c...
+compiling bsp_usart.c...
+..\..\User\usart\bsp_usart.c(199): warning:  #120-D: return value type does not match the function type
+      return ucRTUBuf;
+..\..\User\usart\bsp_usart.c(201): warning:  #1-D: last line of file ends without a newline
+  }
+..\..\User\usart\bsp_usart.c(19): warning:  #177-D: variable "pucSndBufferCur"  was declared but never referenced
+  static volatile uint8_t *pucSndBufferCur;
+..\..\User\usart\bsp_usart.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=11776 RO-data=336 RW-data=124 ZI-data=3084  
+FromELF: creating hex file...
+"..\..\Output\USART.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_USART
   D:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>

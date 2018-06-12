@@ -13,3 +13,5 @@
 ..\..\output\bsp_usart.o: ..\..\Libraries\FWlib\inc\misc.h
 ..\..\output\bsp_usart.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\bsp_usart.o: ..\..\User\timer_base\bsp_TiMbase.h
+..\..\output\bsp_usart.o: ..\..\User\common\bsp_common.h
+..\..\output\bsp_usart.o: D:\SoftWare\keil523\install\ARM\ARMCC\Bin\..\include\String.h

@@ -287,7 +287,7 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5B13B5C2)
-F (..\..\User\main.c)(0x5B1CE489)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\usart -I ..\..\User\timer_base -I ..\..\User\led -I ..\..\User\common -I ..\..\User\sim7600 -I ..\..\User\key -I ..\..\User\keyboard-I.\RTE\_USART-ID:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\SoftWare\keil523\install\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
+F (..\..\User\main.c)(0x5B1FD27D)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\usart -I ..\..\User\timer_base -I ..\..\User\led -I ..\..\User\common -I ..\..\User\sim7600 -I ..\..\User\key -I ..\..\User\keyboard-I.\RTE\_USART-ID:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\SoftWare\keil523\install\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\..\output\main.o --omf_browse ..\..\output\main.crf --depend ..\..\output\main.d)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5B13B5C2)
 I (..\..\Libraries\CMSIS\core_cm3.h)(0x5B13B5C1)
 I (D:\SoftWare\keil523\install\ARM\ARMCC\include\stdint.h)(0x57F606B8)
@@ -298,7 +298,7 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5B13B5C2)
-I (..\..\User\usart\bsp_usart.h)(0x5B16A245)
+I (..\..\User\usart\bsp_usart.h)(0x5B1FD2F3)
 I (D:\SoftWare\keil523\install\ARM\ARMCC\include\stdio.h)(0x57F606B8)
 I (..\..\User\led\bsp_led.h)(0x57E62C78)
 I (..\..\User\timer_base\bsp_TiMbase.h)(0x5B13E498)
@@ -320,7 +320,7 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5B13B5C2)
-I (..\..\User\usart\bsp_usart.h)(0x5B16A245)
+I (..\..\User\usart\bsp_usart.h)(0x5B1FD2F3)
 I (D:\SoftWare\keil523\install\ARM\ARMCC\include\stdio.h)(0x57F606B8)
 I (..\..\User\timer_base\bsp_TiMbase.h)(0x5B13E498)
 F (..\..\User\stm32f10x_it.h)(0x5B13B5C2)()
@@ -348,8 +348,8 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_rcc.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_tim.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5B13B5C2)
-F (..\..\User\usart\bsp_usart.c)(0x5B13E299)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\usart -I ..\..\User\timer_base -I ..\..\User\led -I ..\..\User\common -I ..\..\User\sim7600 -I ..\..\User\key -I ..\..\User\keyboard-I.\RTE\_USART-ID:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\SoftWare\keil523\install\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\..\output\bsp_usart.o --omf_browse ..\..\output\bsp_usart.crf --depend ..\..\output\bsp_usart.d)
-I (..\..\User\usart\bsp_usart.h)(0x5B16A245)
+F (..\..\User\usart\bsp_usart.c)(0x5B1FD21E)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\usart -I ..\..\User\timer_base -I ..\..\User\led -I ..\..\User\common -I ..\..\User\sim7600 -I ..\..\User\key -I ..\..\User\keyboard-I.\RTE\_USART-ID:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\SoftWare\keil523\install\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\..\output\bsp_usart.o --omf_browse ..\..\output\bsp_usart.crf --depend ..\..\output\bsp_usart.d)
+I (..\..\User\usart\bsp_usart.h)(0x5B1FD2F3)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5B13B5C2)
 I (..\..\Libraries\CMSIS\core_cm3.h)(0x5B13B5C1)
 I (D:\SoftWare\keil523\install\ARM\ARMCC\include\stdint.h)(0x57F606B8)
@@ -362,6 +362,8 @@ I (..\..\Libraries\FWlib\inc\stm32f10x_usart.h)(0x5B13B5C2)
 I (..\..\Libraries\FWlib\inc\misc.h)(0x5B13B5C2)
 I (D:\SoftWare\keil523\install\ARM\ARMCC\include\stdio.h)(0x57F606B8)
 I (..\..\User\timer_base\bsp_TiMbase.h)(0x5B13E498)
+I (..\..\User\common\bsp_common.h)(0x5B13F9B4)
+I (D:\SoftWare\keil523\install\ARM\ARMCC\include\String.h)(0x57F606B8)
 F (..\..\User\usart\bsp_usart2.c)(0x5B14082C)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork -I ..\..\Libraries\CMSIS -I ..\..\User -I ..\..\Libraries\FWlib\inc -I ..\..\User\usart -I ..\..\User\timer_base -I ..\..\User\led -I ..\..\User\common -I ..\..\User\sim7600 -I ..\..\User\key -I ..\..\User\keyboard-I.\RTE\_USART-ID:\SoftWare\keil523\install\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\SoftWare\keil523\install\ARM\CMSIS\Include-D__UVISION_VERSION="523" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\..\output\bsp_usart2.o --omf_browse ..\..\output\bsp_usart2.crf --depend ..\..\output\bsp_usart2.d)
 I (..\..\User\usart\bsp_usart2.h)(0x5B140878)
 I (..\..\Libraries\CMSIS\stm32f10x.h)(0x5B13B5C2)

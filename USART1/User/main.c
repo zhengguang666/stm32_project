@@ -45,7 +45,8 @@ volatile uint32_t time = 0; // ms 计时变量
 int main(void)
 {	
     uint8_t keyboard_value;
-    char weight_value[20];
+    int i = 0;
+    char * weight_value;
    /* led 端口配置 */ 
 	LED_GPIO_Config();
     BASIC_TIM6_Init();
@@ -66,7 +67,17 @@ int main(void)
         keyboard_value = keyboard_scan();
         switch ( keyboard_value )
         {
-            case A: //0~9 . 进入某个客户处理逻辑
+            case 0: 
+            case 1: 
+            case 2: 
+            case 3: 
+            case 4: 
+            case 5: 
+            case 6: 
+            case 7: 
+            case 8: 
+            case 9: 
+            case 10: //0~9 . 进入某个客户处理逻辑
                 if(pCustomer[Customer_Current][2] == 0)
                 {
                     if(pCustomer[Customer_Current][1] == 0)
@@ -90,7 +101,7 @@ int main(void)
                     }
                 }
                 break;
-            case B: //确认
+            case 11: //确认
                 if(pCustomer[Customer_Current][2] == 0)
                 {
                     if(pCustomer[Customer_Current][1] == 0)
@@ -128,7 +139,7 @@ int main(void)
                     }
                 }
                 break;  
-            case C: //累加
+            case 12: //累加
                 if(pCustomer[Customer_Current][2] == 0)
                 {
                     if(pCustomer[Customer_Current][1] == 4)
@@ -144,10 +155,10 @@ int main(void)
                     }
                 }
                 break; 
-            case D: //去皮
+            case 13: //去皮
                 pCustomer[Customer_Current][2] = 1;
                 break;  
-            case E: //多人,添加新的客户,并处进入处理逻辑
+            case 14: //多人,添加新的客户,并处进入处理逻辑
                 if(Customer_Num <= 4)
                 {
                     do{
@@ -158,7 +169,7 @@ int main(void)
                     Customer_Num++;
                 }
                 break;    
-            case F: //向上
+            case 15: //向上
                 if(Customer_Num >= 2)
                 {
                     do{
@@ -168,7 +179,7 @@ int main(void)
                     }while((pCustomer[Customer_Current][1] == 0) || (pCustomer[Customer_Current][2] == 0));
                 }
                 break;  
-            case G: //向下
+            case 16: //向下
                 if(Customer_Num >= 2)
                 {
                     do{
@@ -178,11 +189,11 @@ int main(void)
                     }while((pCustomer[Customer_Current][1] == 0) || (pCustomer[Customer_Current][2] == 0));
                 }
                 break;  
-            case H: //结算
+            case 17: //结算
                 //send to server
-                for (int i=0; i<=pCustomer[Customer_Current][0]; i++);
+                for (i = 0; i <= pCustomer[Customer_Current][0]; i++);
                 {
-                    Customer[Customer_Current][i] = 0;
+                    memset( &Customer[Customer_Current][i], 0, sizeof(Customer[Customer_Current][i]) );
                 }
                 pCustomer[Customer_Current][0] = 0;
                 pCustomer[Customer_Current][1] = 0;
@@ -190,7 +201,6 @@ int main(void)
                 Customer_Num--;
                 break;                  
         }
-        if( KeyboardScan() == 'A') //A:累加
 	}	
 }
 /*********************************************END OF FILE**********************/

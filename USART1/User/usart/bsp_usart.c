@@ -3,6 +3,7 @@
 	
 #include "bsp_usart.h"
 #include "bsp_TiMbase.h" 
+#include "bsp_common.h"
 
 /* ----------------------- Defines ------------------------------------------*/
 #define MB_SER_PDU_SIZE_MIN     4       /*!< Minimum size of a Modbus RTU frame. */
@@ -21,6 +22,7 @@ static volatile unsigned short usSndBufferCount;
 static volatile uint8_t usRcvBufferPos;
 
 static volatile uint8_t eRcvStateError = 0;
+static volatile uint8_t value_status = 0;
 
  /**
   * @brief  配置嵌套向量中断控制器NVIC
@@ -93,11 +95,11 @@ void USART_Config(void)
 	// 串口中断优先级配置
 	NVIC_Configuration();
 	
-	// 使能串口接收中断
-	USART_ITConfig(WEIGHT_USARTx, USART_IT_RXNE, ENABLE);	
+	// 关闭串口接收中断
+	USART_ITConfig(WEIGHT_USARTx, USART_IT_RXNE, DISABLE);	
 	
-	// 使能串口
-	USART_Cmd(WEIGHT_USARTx, ENABLE);	    
+	// 关闭串口
+	USART_Cmd(WEIGHT_USARTx, DISABLE);	    
 }
 
 void
@@ -135,6 +137,7 @@ ReceiveFSM( void )
          * receiver is in the state STATE_RX_RECEIVCE.
          */
     case STATE_RX_IDLE:
+        value_status = 0;
         eRcvStateError = 0;
         usRcvBufferPos = 0;
         ucRTUBuf[usRcvBufferPos++] = ucByte;
@@ -158,6 +161,7 @@ ReceiveFSM( void )
         {
             eRcvState = STATE_RX_ERROR;
             eRcvStateError = 1;
+            value_status = 1;
         }
         PortTimersEnable();
         break;
@@ -168,4 +172,30 @@ void TimerT35Expired( void )
 {
     PortTimersDisable();
     eRcvState = STATE_RX_IDLE;
+}
+
+unsigned char * Get_Weight(void)
+{
+    uint32_t time = 0;
+	// 使能串口接收中断
+	//USART_ITConfig(WEIGHT_USARTx, USART_IT_RXNE, ENABLE);	
+	
+	// 使能串口
+	//USART_Cmd(WEIGHT_USARTx, ENABLE);
+    
+    while((eRcvState != STATE_RX_IDLE) || (value_status == 1) || (usRcvBufferPos == 0))
+    {
+        Delay_MS(1);
+        time++;
+        if(time == 2000)
+            return NULL;
+    }
+    
+    // 关闭串口接收中断
+	USART_ITConfig(WEIGHT_USARTx, USART_IT_RXNE, DISABLE);	
+	
+	// 关闭串口
+	USART_Cmd(WEIGHT_USARTx, DISABLE);
+    return ucRTUBuf;
+    
 }

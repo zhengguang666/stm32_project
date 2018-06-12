@@ -58,5 +58,6 @@ void USART_Config(void);
 void PortSerialGetByte( uint8_t * pucByte );
 void ReceiveFSM( void );
 void TimerT35Expired( void );
+unsigned char * Get_Weight(void);
 
 #endif /* __USART_H */
